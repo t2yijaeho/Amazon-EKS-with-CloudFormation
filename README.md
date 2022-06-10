@@ -15,25 +15,44 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
     wget https://github.com/t2yijaeho/K8s-with-Cloud9/raw/matia/Template/K8sCluster.yaml
     ```
 
-### 2. Get a AMI ID for Kubernetes worker node EC2
+
+### 2. Set a Kubernetes version
 
    [Kubernetes version](https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html)
-
-   [EKS Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html)
    
-   ***Change `<K8s Version>` to your desired kubernetes version***
+    ***Change `<K8s Version>` to your desired kubernetes version***
    
     ```console
     K8S_VERSION=<K8s Version>
     echo $K8S_VERSION
     ```
-
+    
     ```console
+    mspuser:~/environment $ K8S_VERSION="1.22"
+    mspuser:~/environment $ echo $K8S_VERSION
+    1.22
+    ```
+
+
+### 3. Get a AMI ID for Kubernetes worker node EC2
+
+   [EKS Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html)
+
+    ```cli
     AMI_ID=$(aws ssm get-parameter \
       --name /aws/service/eks/optimized-ami/$K8S_VERSION/amazon-linux-2/recommended/image_id \
       --query "Parameter.Value" --output text)
     echo $AMI_ID
     ```    
+    
+    ```console
+    mspuser:~/environment $ AMI_ID=$(aws ssm get-parameter \
+    >   --name /aws/service/eks/optimized-ami/$K8S_VERSION/amazon-linux-2/recommended/image_id \
+    >   --query "Parameter.Value" --output text)
+    mspuser:~/environment $ echo $AMI_ID
+    ami-0123f8d52a516f19d
+    mspuser:~/environment $ 
+    ```
 
 
 ### 3. Create an AWS CloudFormation stack
