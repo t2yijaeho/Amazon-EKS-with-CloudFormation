@@ -11,20 +11,22 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
 
 ### 1. Get an AWS CloudFormation stack template body
 
+1. [Template Body](https://github.com/t2yijaeho/Amazon-EKS-with-CloudFormation/blob/matia/Template/K8sCluster.yaml)
+
     ```console
-    wget https://github.com/t2yijaeho/K8s-with-Cloud9/raw/matia/Template/K8sCluster.yaml
+     wget https://github.com/t2yijaeho/K8s-with-Cloud9/raw/matia/Template/K8sCluster.yaml
     ```
 
 
 ### 2. Set a Kubernetes version
 
-   [Kubernetes version](https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html)
+1. [Kubernetes version](https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html)
    
     ***Change `<K8s Version>` to your desired kubernetes version***
    
     ```console
-    K8S_VERSION=<K8s Version>
-    echo $K8S_VERSION
+     K8S_VERSION=<K8s Version>
+     echo $K8S_VERSION
     ```
     
     ```console
@@ -36,7 +38,7 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
 
 ### 3. Get a AMI ID for Kubernetes worker node EC2
 
-   [EKS Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html)
+1. [EKS Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html)
 
     ```cli
     AMI_ID=$(aws ssm get-parameter \
@@ -56,6 +58,8 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
 
 
 ### 3. Create an AWS CloudFormation stack
+
+1. Create stack `K8sBasics` using worker node AMI ID and Kubernetes version parameters
 
     ```console
     aws cloudformation create-stack \
