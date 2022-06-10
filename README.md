@@ -1,21 +1,21 @@
-# Kubernetes Basics with AWS Cloud9
+# Create Amazon EKS cluster and node group in new VPC with AWS CloudFormation
 
 
-## 1. Create an AWS Cloud9 Environment
+## 1. Prepare Environment
 
-   [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
-
-
-## 2. Create an Amazon EKS cluster
+Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
 
 
-1. Get an AWS CloudFormation stack template body
+## 2. Create an Amazon EKS cluster and node group
+
+
+### 1. Get an AWS CloudFormation stack template body
 
     ```console
     wget https://github.com/t2yijaeho/K8s-with-Cloud9/raw/matia/Template/K8sCluster.yaml
     ```
 
-2. Get a AMI ID for Kubernetes worker node EC2
+### 2. Get a AMI ID for Kubernetes worker node EC2
 
    [Kubernetes version](https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html)
 
@@ -35,7 +35,8 @@
     echo $AMI_ID
     ```    
 
-2. Create an AWS CloudFormation stack
+
+### 3. Create an AWS CloudFormation stack
 
     ```console
     aws cloudformation create-stack \
@@ -46,58 +47,9 @@
       --capabilities CAPABILITY_IAM
     ```
 
-3. Monitor the progress by the CloudFormation stack's events in AWS management console (
 
-    <img src="https://github.com/t2yijaeho/Docker-with-AWS-Cloud9/blob/matia/images/CloudFormation%20Stack%20Creation%20Events.png?raw=true">
-    
+### 4. Monitor the progress by the CloudFormation stack's events in AWS management console
+   ***Launching will take approximately 15 minutes***
 
-## 3. Configure Kubernetes control plane
+    <img src="https://github.com/t2yijaeho/Amazon-EKS-with-CloudFormation/blob/matia/images/CloudFormation%20Stack%20Creation%20Events.png?raw=true">
 
-1. Install kubectl (Kubernetes command line utility)
-
-    [AWS Guide to install kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html)
-    
-    ***Set `kubectl version`, `release date` according to Kubernetes version***
-    
-    ```console
-    KUBECTL_VERSION=<kubectl version>
-    RELEASE_DATE=<release date>
-    echo $KUBECTL_VERSION
-    echo $RELEASE_DATE
-    ```
-    ```console
-    mspuser:~/environment $ KUBECTL_VERSION=1.22.6
-    mspuser:~/environment $ RELEASE_DATE=2022-03-09
-    mspuser:~/environment $ echo $KUBECTL_VERSION
-    1.22.6
-    mspuser:~/environment $ echo $RELEASE_DATE
-    2022-03-09
-    mspuser:~/environment $ 
-    ```
-    
-    Download the Amazon EKS vended kubectl binary
-    
-    ```console
-    curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/$KUBECTL_VERSION/$RELEASE_DATE/bin/linux/amd64/kubectl
-    ```
-
-    Apply execute permissions to the binary
-    ```console
-    chmod +x ./kubectl
-    ```
-    
-    Copy the binary to a folder in PATH
-    ```console
-    mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-    ```
-    
-    Verify kubectl version
-    ```console
-    kubectl version --short --client
-    ```
-
-    ```console
-    mspuser:~/environment $ kubectl version --short --client
-    Client Version: v1.22.6-eks-7d68063
-    mspuser:~/environment $ 
-    ```
