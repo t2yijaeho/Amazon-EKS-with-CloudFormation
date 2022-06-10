@@ -38,7 +38,7 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
 
 ### 3. Get a AMI ID for Kubernetes worker node EC2
 
-1. [EKS Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html)
+1. Refer to [EKS Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) according to Kubernetes versioin
 
     ```cli
     AMI_ID=$(aws ssm get-parameter \
