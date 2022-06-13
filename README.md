@@ -57,7 +57,7 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
     ```
 
 
-### 3. Create an AWS CloudFormation stack
+### 4. Create an AWS CloudFormation stack
 
 1. Create stack `K8sBasics` using worker node AMI ID and Kubernetes version parameters
 
@@ -71,7 +71,7 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
     ```
 
 
-### 4. Monitor the progress by the CloudFormation stack's events in AWS management console
+### 5. Monitor the progress by the CloudFormation stack's events in AWS management console
    ***Launching will take approximately 15 minutes***
 
 <img src="https://github.com/t2yijaeho/Amazon-EKS-with-CloudFormation/blob/matia/Images/CloudFormation%20Stack%20Creation%20Events.png?raw=true">
