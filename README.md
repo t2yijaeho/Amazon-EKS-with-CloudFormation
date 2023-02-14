@@ -14,7 +14,7 @@ Refer to [AWS Cloud9](https://github.com/t2yijaeho/Docker-with-AWS-Cloud9)
 1. Validate YAML-formatted text file [Stack Template Body](https://github.com/t2yijaeho/Amazon-EKS-with-CloudFormation/blob/matia/Template/K8sCluster.yaml)
 
     ```console
-     wget https://github.com/t2yijaeho/K8s-with-Cloud9/raw/matia/Template/K8sCluster.yaml
+     wget https://github.com/t2yijaeho/Amazon-EKS-with-CloudFormation/raw/matia/Template/K8sCluster.yaml
     ```
 
 
